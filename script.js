@@ -33,8 +33,6 @@ function Circle(x, y, dx, dy, radius, minradius){
         
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-        c.strokeStyle = "black";
-        c.stroke();
         c.fillStyle = this.color
         c.fill()
     }
@@ -52,7 +50,7 @@ function Circle(x, y, dx, dy, radius, minradius){
         this.x += this.dx;
         this.y += this.dy;
 
-        if(coordinates.x - this.x < 50 && coordinates.x - this.x > -50 && coordinates.y - this.y <50 && coordinates.y - this.y > -50 && this.radius < 30 ){
+        if(coordinates.x - this.x < 50 && coordinates.x - this.x > -50 && coordinates.y - this.y <50 && coordinates.y - this.y > -50 && this.radius < 20 ){
             this.radius +=1;
         }else if(this.radius > this.minradius) {
             this.radius -=1;
@@ -60,19 +58,18 @@ function Circle(x, y, dx, dy, radius, minradius){
 
         this.draw();
     }
-
 }
 
 var circleArray = [];
 
-for(var i=0; i< 1000; i++){
+for(var i=0; i< 2000; i++){
 
     var x = Math.random()*(window.innerWidth - radius*2) + radius;
     var y = Math.random()*(window.innerHeight - radius*2) + radius;
     var radius = 6;
     var dx = (Math.random()*2)+0.2;
     var dy = (Math.random()*2)+0.2;
-    var minradius = Math.random()*5 + 1;
+    var minradius = (Math.random()*2) + 0.1;
     circleArray.push(new Circle(x, y, dx, dy, radius, minradius));
 }
 
@@ -82,7 +79,6 @@ function animate() {
     for(var i=0; i < circleArray.length; i++){
 
         circleArray[i].move();
-    }
-    
+    }   
 }
 animate();
